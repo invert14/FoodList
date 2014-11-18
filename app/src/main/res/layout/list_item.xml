@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:minWidth="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/product_name"
+        android:textSize="25dp" />
+
+    <TextView
+        android:minWidth="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/product_amount"
+        android:textSize="25dp"
+        android:text="10"
+        android:layout_marginLeft="15dp"/>
+
+    <EditText
+        android:width="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/modify_amount"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/abc_ab_bottom_solid_light_holo"
+        android:textColor="#ff2d1032"
+        android:inputType="number"
+      />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_button"
+        android:text="Add"/>
+
+    <Button
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/remove_button"
+        android:text="Remove"/>
+
+</LinearLayout>
