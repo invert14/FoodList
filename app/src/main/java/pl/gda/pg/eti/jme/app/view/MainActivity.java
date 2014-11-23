@@ -191,7 +191,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        productsController.products = products;
+        productsController.setProducts(products);
         productsController.addProductsThatShouldBeAdded();
         updateListView();
 
@@ -282,10 +282,6 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void removeProduct(View view) {
-        //TODO: fill with code :)
-    }
-
     private class JSONParseTask extends AsyncTask<String, String, String> {
 
         ArrayList<Product> products;
@@ -306,9 +302,17 @@ public class MainActivity extends ActionBarActivity {
                 products.put(new Gson().toJson(p));
             }
             shh.addParam("products", products.toString());
-            String jsonString = shh.getStringFromUrl();
 
             //TODO: pass products to be deleted on server
+            JSONArray productsToBeDeleted = new JSONArray();
+            for (Product p : productsController.getProductsToBeDeleted()) {
+                productsToBeDeleted.put(new Gson().toJson(p.getName()));
+            }
+            shh.addParam("productsToBeDeleted", productsToBeDeleted.toString());
+            productsController.clearProductsToBeDeleted();
+
+            String jsonString = shh.getStringFromUrl();
+
             return jsonString;
         }
         @Override
@@ -336,6 +340,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 productsController.clearAndAddProducts(products);
                 updateListView();
+                Toast.makeText(getApplicationContext(), "Synchronization succeeded", Toast.LENGTH_SHORT).show();
 
             } catch (JSONException e) {
                 e.printStackTrace();

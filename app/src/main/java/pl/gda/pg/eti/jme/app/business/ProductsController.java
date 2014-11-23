@@ -7,12 +7,19 @@ import java.util.List;
 import pl.gda.pg.eti.jme.app.model.Product;
 
 public class ProductsController {
-    public List<Product> products;
-    public List<Product> productsToBeAdded;
+    private List<Product> products;
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    private List<Product> productsToBeAdded;
+    private List<Product> productsToBeDeleted;
 
     public ProductsController() {
         products = new ArrayList<Product>();
         productsToBeAdded = new ArrayList<Product>();
+        productsToBeDeleted = new ArrayList<Product>();
     }
 
     public List<Product> getProducts() {
@@ -75,10 +82,20 @@ public class ProductsController {
         return 0;
     }
 
+    public List<Product> getProductsToBeDeleted() {
+        return productsToBeDeleted;
+    }
+
     public void deleteProduct(String name) {
         Product p = getProductByName(name);
         if (products.contains(p)) {
             products.remove(p);
+            productsToBeDeleted.add(p);
+
         }
+    }
+
+    public void clearProductsToBeDeleted() {
+        productsToBeDeleted.clear();
     }
 }
