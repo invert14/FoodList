@@ -36,10 +36,12 @@ public abstract class ListItemAdapter extends ArrayAdapter<Product> {
 
         TextView productName = (TextView) view.findViewById(R.id.product_name);
         TextView productAmount = (TextView) view.findViewById(R.id.product_amount);
+        TextView productLocalAmount = (TextView) view.findViewById(R.id.product_localamount);
 
         final Product product = products.get(position);
         productName.setText(product.getName());
         productAmount.setText(String.valueOf(product.getAmount()));
+        productLocalAmount.setText(String.valueOf(product.getLocalAmount()));
 
         final EditText editText = (EditText) view.findViewById(R.id.modify_amount);
 
@@ -51,7 +53,7 @@ public abstract class ListItemAdapter extends ArrayAdapter<Product> {
             public void onClick(View view) {
                 final int amount = GetModifyAmount(editText);
                 if (amount > 0) {
-                    ListItemAdapter.this.onClick(view, product, amount);
+                    ListItemAdapter.this.onModifyAmountClick(view, product, amount);
                 }
             }
         });
@@ -62,8 +64,16 @@ public abstract class ListItemAdapter extends ArrayAdapter<Product> {
             public void onClick(View view) {
                 final int amount = GetModifyAmount(editText);
                 if (amount > 0) {
-                    ListItemAdapter.this.onClick(view, product, -amount);
+                    ListItemAdapter.this.onModifyAmountClick(view, product, -amount);
                 }
+            }
+        });
+
+        Button deleteProductButton = (Button) view.findViewById(R.id.deleteProduct_button);
+        deleteProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ListItemAdapter.this.onDeleteClick(view, product);
             }
         });
 
@@ -81,5 +91,6 @@ public abstract class ListItemAdapter extends ArrayAdapter<Product> {
         return probAmount;
     }
 
-    abstract public void onClick(View view, Product product, int amount);
+    abstract public void onModifyAmountClick(View view, Product product, int amount);
+    abstract public void onDeleteClick(View view, Product product);
 }

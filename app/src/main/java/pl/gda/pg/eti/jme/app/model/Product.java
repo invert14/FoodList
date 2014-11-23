@@ -6,13 +6,13 @@ public class Product implements Serializable {
     private int id;
     private String name;
     private int amount;
-    private int userId;
+    private int localAmount;
 
-    public Product(int id, String name, int amount, int userId) {
+    public Product(int id, String name, int amount, int localAmount) {
         this.id = id;
         this.name = name;
         this.amount = amount;
-        this.userId = userId;
+        this.localAmount = localAmount;
     }
 
     public int getId() {
@@ -39,12 +39,12 @@ public class Product implements Serializable {
         this.amount = amount;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getLocalAmount() {
+        return localAmount;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setLocalAmount(int localAmount) {
+        this.localAmount = localAmount;
     }
 
 }

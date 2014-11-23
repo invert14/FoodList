@@ -8,13 +8,13 @@
         android:orderInCategory="10"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_refresh"
-        android:title="Get from server"
+    <item android:id="@+id/clear_local"
+        android:title="Clear local storage"
         android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:showAsAction="never"/>
 
-    <item android:id="@+id/update_server"
-        android:title="Update server side"
-        android:orderInCategory="1000"
-        app:showAsAction="never" />
+    <item android:id="@+id/action_refresh"
+        android:title="Synchronize"
+        app:showAsAction="always" />
+
 </menu>

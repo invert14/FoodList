@@ -12,5 +12,7 @@
     <string name="content_value">[content value]</string>
     <string name="sample_data">Fill with sample data</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

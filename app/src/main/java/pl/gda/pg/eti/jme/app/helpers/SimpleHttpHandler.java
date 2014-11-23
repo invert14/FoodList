@@ -8,7 +8,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -20,6 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SimpleHttpHandler {
@@ -28,7 +28,8 @@ public class SimpleHttpHandler {
     JSONArray jArr = null;
     private final DefaultHttpClient httpClient;
     private final HttpPost httpPost;
-    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+    List<NameValuePair> params = new ArrayList<NameValuePair>();
+    HashMap<String, String> paramsMap = new HashMap<String, String>();
 
 //    DefaultHttpClient httpClient;
 
@@ -40,7 +41,8 @@ public class SimpleHttpHandler {
     }
 
     public void addParam(String name, String value) {
-        nameValuePairs.add(new BasicNameValuePair(name, value));
+        params.add(new BasicNameValuePair(name, value));
+        paramsMap.put(name, value);
     }
 
     public String getStringFromUrl() {
@@ -48,7 +50,7 @@ public class SimpleHttpHandler {
         // Making HTTP request
         try {
             // defaultHttpClient
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
@@ -58,6 +60,8 @@ public class SimpleHttpHandler {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e("SimpleHttpHandler::::", "No connection!");
+            return "0";
         }
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -73,17 +77,5 @@ public class SimpleHttpHandler {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
         return responseString;
-    }
-
-    public JSONArray getJSONFromUrl() {
-        // try parse the string to a JSON object
-        try {
-            String jsonString = getStringFromUrl();
-            jArr = new JSONArray(jsonString);
-        } catch (JSONException e) {
-            Log.e("JSON Parser", "Error parsing data " + e.toString());
-        }
-        // return JSON String
-        return jArr;
     }
 }
