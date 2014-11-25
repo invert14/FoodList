@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:minWidth="70dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_name"
-        android:textSize="25sp" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:minWidth="40dp"
+            <TextView
+                android:minWidth="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_name"
+                android:textSize="15sp"
+                android:textColor="#000000"/>
+
+
+        </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_amount"
-        android:textSize="25sp"
-        android:text="10"
-        android:layout_marginLeft="15dp"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:minWidth="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_localamount"
-        android:textSize="12sp"
-        android:text="10"
-        android:layout_marginLeft="15dp"/>
+        <TextView
+            android:minWidth="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_amount"
+            android:textSize="25sp"
+            android:text="10"
+            android:layout_marginLeft="15dp"/>
 
-    <EditText
+
+        <TextView
+            android:minWidth="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_localamount"
+            android:textSize="12sp"
+            android:text="10"
+            android:layout_marginLeft="15dp"/>
+
+        <EditText
         android:width="60dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,28 +55,28 @@
         android:inputType="number"
         />
 
-    <Button
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_button"
-        android:text="+"/>
+        <Button
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_button"
+            android:text="+"/>
 
-    <Button
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/remove_button"
-        android:text="-"/>
+        <Button
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remove_button"
+            android:text="-"/>
 
-    <Button
-        android:minHeight="0dp"
-        android:minWidth="0dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/deleteProduct_button"
-        android:text="X" />
-
+        <Button
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteProduct_button"
+            android:text="X" />
+    </LinearLayout>
 </LinearLayout>
