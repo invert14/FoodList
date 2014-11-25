@@ -46,21 +46,19 @@ public class ProductsController {
         }
     }
 
-    public Product getProductById(int id) {
-        for (Product p : products) {
-            if (p.getId() == id) {
-                return p;
-            }
-        }
-        return null;
-    }
-
     public void addProductAmount(String name, int amount) {
         Product p = getProductByName(name);
         int prevAmount = p.getAmount();
-        p.setAmount(prevAmount + amount);
+        int newAmount = prevAmount + amount;
         int prevLocalAmount = p.getLocalAmount();
-        p.setLocalAmount(prevLocalAmount + amount);
+        int newLocalAmount = prevLocalAmount + amount;
+
+        if (newAmount < 0) {
+            newAmount = 0;
+            newLocalAmount = prevLocalAmount - prevAmount;
+        }
+        p.setAmount(newAmount);
+        p.setLocalAmount(newLocalAmount);
     }
 
     public void clear() {

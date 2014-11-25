@@ -34,7 +34,7 @@ import pl.gda.pg.eti.jme.app.view.adapters.ListItemAdapter;
 public class MainActivity extends ActionBarActivity {
 
     private static final String FILE_NAME = "FoodList_";
-    public static final String SERVER_URL = "http://192.168.0.101:5000";
+    public static final String SERVER_URL = "http://10.40.81.92:5000";
     public static final String PRODUCTS_URL = SERVER_URL + "/products";
     public static final String USER_ID_URL = SERVER_URL + "/user";
 
@@ -43,10 +43,6 @@ public class MainActivity extends ActionBarActivity {
 
     ListView listView;
     ProductsController productsController;
-
-    public ProductsController getProductsController() {
-        return productsController;
-    }
 
    /* @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -117,7 +113,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         String FILE_DIR = getFileDir();
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         ObjectOutputStream os = null;
         File file;
 
@@ -151,7 +147,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private String getFileDir() {
-        return getApplicationContext().getFilesDir().getPath().toString() + "/"
+        return getApplicationContext().getFilesDir().getPath() + "/"
                 + FILE_NAME + String.valueOf(userId) + "_" + String.valueOf(deviceId);
     }
 
@@ -272,7 +268,7 @@ public class MainActivity extends ActionBarActivity {
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 String newProductName = data.getStringExtra("result");
-                Product newProduct = new Product(0, newProductName, 0, 0);
+                Product newProduct = new Product(newProductName, 0, 0);
                 productsController.addProductToBeAdded(newProduct);
                 updateListView();
             }
@@ -321,20 +317,19 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(), "Synchronization failed", Toast.LENGTH_SHORT).show();
                 return;
             }
-            JSONArray json_products = null;
+            JSONArray json_products;
             try {
                 json_products = new JSONArray(jsonString);
                 // Getting JSON Array from URL
                 for(int i = 0; i < json_products.length(); i++){
                     JSONObject c = json_products.getJSONObject(i);
                     // Storing  JSON item in a Variable
-                    int id = c.getInt("id");
                     String name = c.getString("name");
                     int amount = c.getInt("amount");
                     int localAmount = productsController.getLocalAmountByName(name);
 
                     //FIXME: user id
-                    Product product = new Product(id, name, amount, localAmount);
+                    Product product = new Product(name, amount, localAmount);
 
                     products.add(product);
                 }

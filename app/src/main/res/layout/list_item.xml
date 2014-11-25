@@ -46,13 +46,13 @@
             android:layout_marginLeft="15dp"/>
 
         <EditText
-        android:width="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/modify_amount"
-        android:background="@drawable/abc_ab_bottom_solid_light_holo"
-        android:textColor="#ff2d1032"
-        android:inputType="number"
+            android:width="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/modify_amount"
+            android:background="@drawable/abc_ab_bottom_solid_light_holo"
+            android:textColor="#ff2d1032"
+            android:inputType="number"
         />
 
         <Button
