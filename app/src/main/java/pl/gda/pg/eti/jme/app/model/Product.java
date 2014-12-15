@@ -7,6 +7,8 @@ public class Product implements Serializable {
     private int amount;
     private int localAmount;
 
+    private static final long serialVersionUID = -2518143671167959230L;
+
     public Product(String name, int amount, int localAmount) {
         this.name = name;
         this.amount = amount;

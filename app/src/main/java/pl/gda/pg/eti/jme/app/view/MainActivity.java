@@ -34,7 +34,7 @@ import pl.gda.pg.eti.jme.app.view.adapters.ListItemAdapter;
 public class MainActivity extends ActionBarActivity {
 
     private static final String FILE_NAME = "FoodList_";
-    public static final String SERVER_URL = "http://10.40.81.92:5000";
+    public static final String SERVER_URL = "http://10.0.2.2:5000";
     public static final String PRODUCTS_URL = SERVER_URL + "/products";
     public static final String USER_ID_URL = SERVER_URL + "/user";
 
@@ -171,7 +171,7 @@ public class MainActivity extends ActionBarActivity {
                 products = (ArrayList<Product>) is.readObject();
             }
 
-            System.out.println("Done deserializing");
+            System.out.println("Done deserializing!");
 
         } catch (IOException e) {
             e.printStackTrace();
